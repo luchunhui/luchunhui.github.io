@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>H-toy</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="H-toy,h-toy,前端,设计,前端开发,frontend,design,nodejs,JavaScript" />
+  
+
+  <meta name="description" content="需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下： postcss 编译sass，添加浏览器厂商特有前缀  es6编译压缩打包 js，css添加hash防止缓存 html中的css、js引用需要对应其hash值 devServer实时编译 文件目录结构打包成如下的样式  123456789101112131">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H-toy">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/活动H5 webpack配置/index.html">
+<meta property="og:site_name" content="H-toy">
+<meta property="og:description" content="需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下： postcss 编译sass，添加浏览器厂商特有前缀  es6编译压缩打包 js，css添加hash防止缓存 html中的css、js引用需要对应其hash值 devServer实时编译 文件目录结构打包成如下的样式  123456789101112131">
+<meta property="og:locale" content="chinese">
+<meta property="og:updated_time" content="2017-09-11T06:22:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="H-toy">
+<meta name="twitter:description" content="需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下： postcss 编译sass，添加浏览器厂商特有前缀  es6编译压缩打包 js，css添加hash防止缓存 html中的css、js引用需要对应其hash值 devServer实时编译 文件目录结构打包成如下的样式  123456789101112131">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔-好吧-我决定玩把大的，把未来做的项目全部配置到一起，要求如下："><span class="toc-text">需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#插个题外话"><span class="toc-text">插个题外话</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用"><span class="toc-text">1.要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-glob-sync-‘-pages-html-‘-这里最好用相对路径，用绝对路径在地址栏直接-http-localhost-8081-insurance-traffic-html-就会-Cannot-GET-insurance-traffic-html"><span class="toc-text">2.glob.sync(‘./pages//html/‘, {})这里最好用相对路径，用绝对路径在地址栏直接 http://localhost:8081/insurance/traffic.html 就会  Cannot GET /insurance/traffic.html</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-活动H5 webpack配置" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">(no title)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>chunhui lu</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://h-toy.cn/2017/09/11/活动H5 webpack配置/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔-好吧-我决定玩把大的，把未来做的项目全部配置到一起，要求如下："><a href="#需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔-好吧-我决定玩把大的，把未来做的项目全部配置到一起，要求如下：" class="headerlink" title="需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下："></a>需求：由于经常做一些活动H5之类的小项目，自从用了webpack简直是无法自拔~好吧,我决定玩把大的，把未来做的项目全部配置到一起，要求如下：</h3><ul>
+<li>postcss 编译sass，添加浏览器厂商特有前缀 </li>
+<li>es6编译压缩打包</li>
+<li>js，css添加hash防止缓存</li>
+<li>html中的css、js引用需要对应其hash值</li>
+<li>devServer实时编译</li>
+<li>文件目录结构打包成如下的样式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── dist</div><div class="line">│   ├── VIP</div><div class="line">│   │   ├── VIP.5c78c.css</div><div class="line">│   │   ├── VIP.5c78c.js</div><div class="line">│   │   └── index.html</div><div class="line">│   └── test</div><div class="line">│       ├── index.html</div><div class="line">│       ├── test.5c78c.css</div><div class="line">│       └── test.5c78c.js</div><div class="line">├── package.json</div><div class="line">├── pages</div><div class="line">│   ├── VIP</div><div class="line">│   │   ├── html</div><div class="line">│   │   │   └── VIP.html</div><div class="line">│   │   ├── images</div><div class="line">│   │   ├── index.js</div><div class="line">│   │   ├── js</div><div class="line">│   │   │   └── vip1.js</div><div class="line">│   │   └── sass</div><div class="line">│   │       └── index.scss</div><div class="line">│   └── test</div><div class="line">│       ├── html</div><div class="line">│       │   └── test.html</div><div class="line">│       ├── images</div><div class="line">│       ├── index.js</div><div class="line">│       ├── js</div><div class="line">│       │   └── test.js</div><div class="line">│       └── sass</div><div class="line">│           └── test.scss</div><div class="line">├── postcss.config.js</div><div class="line">└── webpack.config.js</div></pre></td></tr></table></figure>
+<blockquote>
+<h5 id="插个题外话"><a href="#插个题外话" class="headerlink" title="插个题外话"></a>插个题外话</h5><p>这个tree挺牛逼的，之前一直不知道是怎么生成的，原来是shell命令生成的，brew install tree 全局安装tree，cd 你想要生成tree的目录路径，然后在shell中执行tree，切记别瞎搞，电脑会被你玩坏的，几万个tree生成出来就呵呵了。</p>
+<figure class="highlight plain"><figcaption><span>-d</span><a href="//生成目录```">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;</div><div class="line">&gt; ```tree -L 2  //生成两层目录</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>-I "node_modules"//忽略“node_modules”文件夹```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">OK！话不多说~干起来！（为了好理解，每次上代码的时候都只会上所有当前代码）</div><div class="line"></div><div class="line"></div><div class="line">```js</div><div class="line"></div><div class="line">npm init //初始化项目，创建package.json</div><div class="line"></div><div class="line">npm install --save-dev webpack //安装webpack</div><div class="line"></div><div class="line">//手动创建webpack.json.js文件并编辑</div></pre></td></tr></table></figure>
+</blockquote>
+<p>OK，现在我们准备工作已经做好了，接下来就是要做最重要的事情了，那就是配置webpack，首先我们先写下常用的webpack写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> path              = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">"extract-text-webpack-plugin"</span>);</div><div class="line"><span class="built_in">module</span>.exports        = &#123;</div><div class="line">  entry  : <span class="string">'./index.js'</span>,<span class="comment">//只是给你们看下常见的写法，其实我并没有这个文件</span></div><div class="line">  <span class="comment">/*</span></div><div class="line"><span class="comment">  //这是多入口文件的写法</span></div><div class="line"><span class="comment">  entry:&#123;</span></div><div class="line"><span class="comment">    a:'./a.js',</span></div><div class="line"><span class="comment">    b:'./b.js',</span></div><div class="line"><span class="comment">    ...</span></div><div class="line"><span class="comment">  &#125;,</span></div><div class="line"><span class="comment">  */</span></div><div class="line">  output : &#123;</div><div class="line">    path      : path.resolve(__dirname,<span class="string">'dist'</span>),</div><div class="line">    filename  : <span class="string">'[name].js'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span> : &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.js$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : [<span class="string">'babel-loader'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.(scss|sass|less|css)$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="comment">//下面的ExtractTextPlugin的作用是将css提取出来作为单独的css文件使用</span></div><div class="line">        use    : ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: <span class="string">'style-loader'</span>,</div><div class="line">          use     : [</div><div class="line">            &#123;</div><div class="line">              loader: <span class="string">'css-loader'</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">              loader : <span class="string">'postcss-loader'</span>,</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;)</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="comment">//new 一个 ExtractTextPlugin的实例对象来实现提取css的功能</span></div><div class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'[name].css'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实上面的代码基本上够平常使用（图片，字体啥的暂时不考虑），但是上面的配置代码完全不能满足我的需求，因为我想每做一个小项目就新加一个文件夹，文件夹中有sass,images,js,html等，并要求打包后的文件目录也是这样的，目的是给后端的小伙伴们的时候直接给他们就可以了，就像最上面的tree结构一样，Ok，我们来补充其他需要的配置代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">const</span> webpack           = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> path              = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="comment">//作用：匹配文件</span></div><div class="line"><span class="keyword">const</span> glob              = <span class="built_in">require</span>(<span class="string">'glob'</span>);</div><div class="line"><span class="comment">//作用：自动安装比如js中的require、import的未安装的依赖</span></div><div class="line"><span class="keyword">const</span> NpmInstallPlugin  = <span class="built_in">require</span>(<span class="string">'npm-install-webpack-plugin'</span>);</div><div class="line"><span class="comment">//作用：提取css文件</span></div><div class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">"extract-text-webpack-plugin"</span>);</div><div class="line"><span class="comment">//作用：清空打包后的目录（比如：dist），因为webpack不能清除的知道你需要哪个文件，当再次编译的时候它只能保留历史的并生成新的文件，所以需要手动clear</span></div><div class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="comment">//动态获取所有入口文件</span></div><div class="line"><span class="keyword">const</span> getEntries        = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> obj = &#123;&#125;;</div><div class="line">  glob.sync(<span class="string">'./pages/*'</span>).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">    obj[<span class="string">`<span class="subst">$&#123;item.split(<span class="string">'/'</span>).pop()&#125;</span>`</span>] = <span class="string">`<span class="subst">$&#123;item&#125;</span>/index.js`</span>;</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports        = &#123;</div><div class="line">  <span class="comment">//使用函数返回的多个动态入口</span></div><div class="line">  entry  : getEntries(),</div><div class="line">  output : &#123;</div><div class="line">    <span class="comment">//需要生成的文件所在的目录</span></div><div class="line">    path      : path.resolve(__dirname,<span class="string">'dist'</span>),</div><div class="line">    <span class="comment">//带有5位hash值的文件名称</span></div><div class="line">    filename  : <span class="string">'./[name]/[name].[hash:5].js'</span>,</div><div class="line">    publicPath: <span class="string">'/'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span> : &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.js$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : [<span class="string">'babel-loader'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.(scss|sass|less|css)$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: <span class="string">'style-loader'</span>,</div><div class="line">          use     : [</div><div class="line">            &#123;</div><div class="line">              loader: <span class="string">'css-loader'</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">              loader : <span class="string">'postcss-loader'</span>,</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;)</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// 自动安装依赖实例</span></div><div class="line">    <span class="keyword">new</span> NpmInstallPlugin(),</div><div class="line">    <span class="comment">// 清空dist目录实例</span></div><div class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    提取并生成css的实例，之前在这里被坑了一次，其实控制css的输出在下面这行代码，并不是在上面的entry和output</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'./[name]/[name].[hash:5].css'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好了，现在我们已经完成了前三个需求了（postcss 编译sass，添加浏览器厂商特有前缀、es6编译压缩打包、js，css添加hash防止缓存），接下来我们来完成最后的几个需求，贴代码先：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> webpack            = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> path               = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="comment">//作用：匹配文件</span></div><div class="line"><span class="keyword">const</span> glob               = <span class="built_in">require</span>(<span class="string">'glob'</span>);</div><div class="line"><span class="comment">//作用：自动安装比如js中的require、import的未安装的依赖</span></div><div class="line"><span class="keyword">const</span> NpmInstallPlugin   = <span class="built_in">require</span>(<span class="string">'npm-install-webpack-plugin'</span>);</div><div class="line"><span class="comment">//作用：提取css文件</span></div><div class="line"><span class="keyword">const</span> ExtractTextPlugin  = <span class="built_in">require</span>(<span class="string">"extract-text-webpack-plugin"</span>);</div><div class="line"><span class="comment">//作用：清空打包后的目录（比如：dist），因为webpack不能清除的知道你需要哪个文件，当再次编译的时候它只能保留历史的并生成新的文件，所以需要手动clear</span></div><div class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</div><div class="line"><span class="comment">//作用：生成HTML模板（特别是生成带有hash值的css和js的html文件特别有用）</span></div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin  = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="comment">//webpack服务</span></div><div class="line"><span class="keyword">const</span> webpackDevServer   = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>);</div><div class="line"><span class="comment">//动态获取所有入口文件</span></div><div class="line"><span class="keyword">const</span> getEntries         = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> obj = &#123;&#125;;</div><div class="line">  glob.sync(path.join(__dirname, <span class="string">'./pages/*'</span>), &#123;&#125;).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">    obj[<span class="string">`<span class="subst">$&#123;item.split(<span class="string">'/'</span>).pop()&#125;</span>`</span>] = <span class="string">`<span class="subst">$&#123;item&#125;</span>/index.js`</span>;</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports           = &#123;</div><div class="line">  <span class="comment">//使用函数返回的多个动态入口</span></div><div class="line">  entry    : getEntries(),</div><div class="line">  output   : &#123;</div><div class="line">    <span class="comment">//指定生成的文件所在的目录</span></div><div class="line">    path      : path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="comment">//带有5位hash值的文件名称</span></div><div class="line">    filename  : <span class="string">'./[name]/[name].[hash:5].js'</span>,</div><div class="line">    publicPath: <span class="string">'/'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span>   : &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.js$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : [<span class="string">'babel-loader'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.(scss|sass|less|css)$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : ExtractTextPlugin.extract(&#123;</div><div class="line">          fallback: <span class="string">'style-loader'</span>,</div><div class="line">          use     : [</div><div class="line">            &#123;</div><div class="line">              loader: <span class="string">'css-loader'</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">              loader: <span class="string">'postcss-loader'</span>,</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;)</div><div class="line">      &#125;,</div><div class="line">      <span class="comment">//编译html文件，HtmlWebpackPlugin需要配合html-loader使用，否则。。。。你见过红色的字字么？</span></div><div class="line">      &#123;</div><div class="line">        test   : <span class="regexp">/\.html$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use    : [<span class="string">'html-loader'</span>]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  devServer: &#123;</div><div class="line">    <span class="comment">//告诉服务器从哪里提供内容</span></div><div class="line">    contentBase: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="comment">//是否压缩</span></div><div class="line">    compress   : <span class="literal">true</span>,</div><div class="line">    <span class="comment">//指定端口号</span></div><div class="line">    port       : <span class="number">9000</span>,</div><div class="line">    publicPath : <span class="string">'/'</span>,</div><div class="line">  &#125;,</div><div class="line">  plugins  : [</div><div class="line">    <span class="comment">// 启用 HMR（即webpack的热加载插件）</span></div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">    * 生成带有hash的css、js引用的html文件实例</span></div><div class="line"><span class="comment">    * filename：指定要生成的html文件</span></div><div class="line"><span class="comment">    * template：生成html的模板（这里有个坑提一下：网上说这个template是用于执行模板文件，比如ejs、jade等模板文件，都是指定空的模板文件，但是我明明html都写了一半了，编译一次你就给我清空了？MMP！其实这里是可以指定你的原始html文件当做模板的，这样就可以一边写一边编译了，哈哈~麻麻再也不用担心我的html被清空了）</span></div><div class="line"><span class="comment">    * chunks：指定需要的块，比如下面的test就需要test里面的css、js啥的，就可以直接给个['test']就可以了</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    * 但是~~~~~~~  HtmlWebpackPlugin好像不能动态添加多个实例，只能这样傻逼式的手动添加，也许是我没找到方法吧，如果有知道的小伙伴教下俺</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      filename: <span class="string">'./test/index.html'</span>,</div><div class="line">      template: <span class="string">'./pages/test/html/test.html'</span>,</div><div class="line">      chunks  : [<span class="string">'test'</span>]</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      filename: <span class="string">'./VIP/index.html'</span>,</div><div class="line">      template: <span class="string">'./pages/VIP/html/VIP.html'</span>,</div><div class="line">      chunks: [<span class="string">'VIP'</span>]</div><div class="line">    &#125;),</div><div class="line">    <span class="comment">// 自动安装依赖实例</span></div><div class="line">    <span class="keyword">new</span> NpmInstallPlugin(),</div><div class="line">    <span class="comment">// 清空dist文件夹</span></div><div class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</div><div class="line">    <span class="comment">// 提取并生成css的实例，之前在这里被坑了一次，其实控制css的输出在下面这行代码，并不是在上面的entry和output</span></div><div class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'./[name]/[name].[hash:5].css'</span>),</div><div class="line"></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Tips:<br>1.webpack-dev-server编译后的代码其实是编译到内存中的，所以看不到打包后的dist目录,如果开发完成了，可以再执行一次生产环境的压缩，比如直接执行webpack即可,顺便贴上笔者的package.json的部分配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;start&quot;: &quot;webpack-dev-server --open&quot;,</div><div class="line">    &quot;build&quot;:&quot;webpack&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure></p>
+<p>2.比如你想看之前test/test.html的页面可直接访问 <a href="http://localhost:9000/test/index.html" target="_blank" rel="external">http://localhost:9000/test/index.html</a></p>
+<p>好了，现在我们的需求就全部完成了！</p>
+<p>==今天遇到个问题，记录一下==</p>
+<ul>
+<li>动态使用HtmlWebpackPlugin添加多页面实例</li>
+</ul>
+<p>OK，上代码先，==由于下面的配置针对的是真实项目，所以和之前的文件夹名不太一样，请忽略==</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> _path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="comment">//作用：匹配文件</span></div><div class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</div><div class="line"><span class="comment">//作用：自动安装比如js中的require、import的未安装的依赖</span></div><div class="line"><span class="keyword">const</span> NpmInstallPlugin = <span class="built_in">require</span>(<span class="string">'npm-install-webpack-plugin'</span>);</div><div class="line"><span class="comment">//作用：提取css文件</span></div><div class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">"extract-text-webpack-plugin"</span>);</div><div class="line"><span class="comment">//作用：清空打包后的目录（比如：dist），因为webpack不能清除的知道你需要哪个文件，当再次编译的时候它只能保留历史的并生成新的文件，所以需要手动clear</span></div><div class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</div><div class="line"><span class="comment">//作用：生成HTML模板（特别是生成带有hash值的css和js的html文件特别有用）</span></div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="comment">//webpack服务</span></div><div class="line"><span class="keyword">const</span> webpackDevServer = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>);</div><div class="line"><span class="comment">//动态获取所有入口文件</span></div><div class="line"><span class="keyword">const</span> getEntries = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> obj = &#123;&#125;;</div><div class="line">  glob.sync(_path.join(__dirname, <span class="string">'./pages/*'</span>), &#123;&#125;).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">    obj[<span class="string">`<span class="subst">$&#123;item.split(<span class="string">'/'</span>).pop()&#125;</span>`</span>] = <span class="string">`<span class="subst">$&#123;item&#125;</span>/index.js`</span>;</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//获取image的当前路径</span></div><div class="line"><span class="keyword">const</span> getImagePath = <span class="function">(<span class="params">p</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(p);</div><div class="line">  <span class="keyword">return</span> p.split(<span class="string">'/'</span>).splice(<span class="number">0</span>, <span class="number">1</span>).join(<span class="string">'/'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> webpackConfig = &#123;</div><div class="line">  <span class="comment">//使用函数返回的多个动态入口</span></div><div class="line">  entry: getEntries(),</div><div class="line">  output: &#123;</div><div class="line">    <span class="comment">//指定生成的文件所在的目录</span></div><div class="line">    path: _path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="comment">//带有5位hash值的文件名称</span></div><div class="line">    filename: <span class="string">'./[name]/[name].[hash:5].js'</span>,</div><div class="line">    publicPath: <span class="string">'/'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.js$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use: [<span class="string">'babel-loader'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.(scss|sass|less|css)$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>, <span class="string">'sass-loader'</span>]</div><div class="line">      &#125;,</div><div class="line">      <span class="comment">//编译html文件，HtmlWebpackPlugin需要配合html-loader使用，否则。。。。你见过红色的提示么？</span></div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.html$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use: [<span class="string">'html-loader'</span>]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.(png|jpg|gif|svg)$/</span>,</div><div class="line">        use: [</div><div class="line">          &#123;</div><div class="line">            loader: <span class="string">'url-loader'</span>,</div><div class="line">            options: &#123;</div><div class="line">              limit: <span class="number">1024</span>,</div><div class="line">              <span class="comment">// name:`./$&#123;getImagePath([path])&#125;/[name].[ext]`</span></div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  devServer: &#123;</div><div class="line">    <span class="comment">//告诉服务器从哪里提供内容</span></div><div class="line">    contentBase: _path.resolve(__dirname, <span class="string">'/dist'</span>),</div><div class="line">    <span class="comment">//需要跟new webpack.HotModuleReplacementPlugin()一起使用</span></div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    publicPath: <span class="string">'/'</span>,</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// 启用 HMR（即webpack的热加载插件）</span></div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">    <span class="comment">// 自动安装依赖实例</span></div><div class="line">    <span class="keyword">new</span> NpmInstallPlugin(),</div><div class="line">    <span class="comment">// 清空dist文件夹</span></div><div class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</div><div class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'./[name]/[name].[hash:5].css'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//动态获取html的入口集合</span></div><div class="line"><span class="keyword">const</span> getHtmlPluginsConfig = <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">//遍历路径，动态添加filename、template、chunks</span></div><div class="line">  glob.sync(<span class="string">'./pages/*/html/*'</span>, &#123;&#125;).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">/* HtmlWebpackPlugin作用：</span></div><div class="line"><span class="comment">    * 生成带有hash的css、js引用的html文件实例</span></div><div class="line"><span class="comment">    * filename：指定要生成的html文件</span></div><div class="line"><span class="comment">    * template：生成html的模板（这里有个坑提一下：网上说这个template是用于执行模板文件，比如ejs、jade等模板文件，都是指定空的模板文件，但是我明明html都写了一半了，编译一次你就给我清空了？MMP！其实这里是可以指定你的原始html文件当做模板的，这样就可以一边写一边编译了，哈哈~麻麻再也不用担心我的html被清空了）</span></div><div class="line"><span class="comment">    * chunks：指定需要的块，比如下面的test就需要test里面的css、js啥的，就可以直接给个['test']就可以了</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">const</span> htmlPlugin = <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      <span class="comment">//这是期望的路径(eg:'./insurance/index.html')</span></div><div class="line">      filename: item.replace(<span class="regexp">/\/html|\/pages/gi</span>, () =&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">''</span></div><div class="line">      &#125;),</div><div class="line">      <span class="comment">//拿到我们的原始模板(eg:'./pages/insurance/html/index.html')</span></div><div class="line">      template: item,</div><div class="line">      <span class="comment">//模块名（eg:'insurance'）</span></div><div class="line">      chunks: item.split(<span class="string">'/'</span>)[item.split(<span class="string">'/'</span>).length - <span class="number">2</span>]</div><div class="line">    &#125;);</div><div class="line">    webpackConfig.plugins.push(htmlPlugin);</div><div class="line">  &#125;)</div><div class="line">&#125;)();</div><div class="line"><span class="built_in">module</span>.exports = webpackConfig;</div></pre></td></tr></table></figure>
+<p>这里说几点little tips：</p>
+<h5 id="1-要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用"><a href="#1-要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用" class="headerlink" title="1.要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用"></a>1.要想真正的热更新需要devServer里的hot参数和HotModuleReplacementPlugin一起使用</h5><h5 id="2-glob-sync-‘-pages-html-‘-这里最好用相对路径，用绝对路径在地址栏直接-http-localhost-8081-insurance-traffic-html-就会-Cannot-GET-insurance-traffic-html"><a href="#2-glob-sync-‘-pages-html-‘-这里最好用相对路径，用绝对路径在地址栏直接-http-localhost-8081-insurance-traffic-html-就会-Cannot-GET-insurance-traffic-html" class="headerlink" title="2.glob.sync(‘./pages//html/‘, {})这里最好用相对路径，用绝对路径在地址栏直接 http://localhost:8081/insurance/traffic.html 就会  Cannot GET /insurance/traffic.html"></a>2.glob.sync(‘./pages/<em>/html/</em>‘, {})这里最好用相对路径，用绝对路径在地址栏直接 <a href="http://localhost:8081/insurance/traffic.html" target="_blank" rel="external">http://localhost:8081/insurance/traffic.html</a> 就会  <code>Cannot GET /insurance/traffic.html</code></h5>
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="hide pull-left" href="/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/09/11/活动H5 webpack配置/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
